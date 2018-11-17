@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -28,5 +29,24 @@ class VisitHasTimesTest extends TestCase
         $visit = factory('App\Visit')->create();
 
         $this->assertTrue($visit->starting_at instanceOf \DateTime);
+    }
+
+
+    /** @test */
+    public function a_visit_can_have_a_null_ending_at_time()
+    {
+        $visit = factory('App\Visit')->create([
+            'ending_at' => null
+        ]);
+
+        $this->assertNull($visit->ending_at);
+    }
+
+    /** @test */
+    public function a_visit_can_have_an_ending_at_time()
+    {
+        $visit = factory('App\Visit')->create();
+
+        $this->assertInstanceOf(Carbon::class, $visit->ending_at);
     }
 }

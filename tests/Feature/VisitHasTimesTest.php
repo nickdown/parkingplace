@@ -28,7 +28,7 @@ class VisitHasTimesTest extends TestCase
     {
         $visit = factory('App\Visit')->create();
 
-        $this->assertTrue($visit->starting_at instanceOf \DateTime);
+        $this->assertInstanceOf(Carbon::class, $visit->starting_at);
     }
 
 

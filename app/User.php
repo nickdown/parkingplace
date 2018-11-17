@@ -32,4 +32,13 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Visit');
     }
+
+    public function enterGarage()
+    {
+        $visit = $this->visits()->create([
+            'starting_at' => now()
+        ]);
+
+        return $visit;
+    }
 }

@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visit extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'starting_at'
+    ];
+
     protected $dates = [
         'created_at',
         'updated_at',

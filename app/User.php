@@ -35,6 +35,10 @@ class User extends Authenticatable
 
     public function enterGarage()
     {
+        if (! $this->canEnterGarage()) {
+            throw new \Exception('User cannot enter the garage');
+        }
+
         $visit = $this->visits()->create([
             'starting_at' => now()
         ]);
@@ -51,5 +55,13 @@ class User extends Authenticatable
         $latestVisit = $this->visits()->orderBy('starting_at', 'desc')->first();
 
         return $latestVisit->ending_at == null;
+    }
+
+    public function canEnterGarage()
+    {
+        if ($this->isInGarage()) {
+            return false;
+        }
+        return true;
     }
 }

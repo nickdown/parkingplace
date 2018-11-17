@@ -15,7 +15,15 @@ class UserCanCreateAVisitTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $this->actingAs($user)->json('POST', '/api/visits')->assertStatus(201);
+        $this->assertDatabaseMissing('visits', [
+            'user_id' => $user->id
+        ]);
+
+        $this->actingAs($user)->json('POST', '/visits');
+
+        $this->assertDatabaseHas('visits', [
+            'user_id' => $user->id
+        ]);
     }
 
     /** @test */
@@ -26,7 +34,7 @@ class UserCanCreateAVisitTest extends TestCase
         $user->enterGarage();
 
         //since the user is already in the garage they will be forbidden from creating another visit
-        $this->actingAs($user)->json('POST', '/api/visits')->assertStatus(403);
+        $this->actingAs($user)->json('POST', '/visits')->assertStatus(403);
     }
 
     /** @test */
@@ -34,7 +42,7 @@ class UserCanCreateAVisitTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $this->actingAs($user)->json('POST', '/api/visits');
+        $this->actingAs($user)->json('POST', '/visits');
 
         $this->assertTrue($user->isInGarage());
     }
@@ -44,7 +52,7 @@ class UserCanCreateAVisitTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $this->actingAs($user)->json('POST', '/api/visits');
+        $this->actingAs($user)->json('POST', '/visits');
 
         $this->assertFalse($user->canEnterGarage());
     }

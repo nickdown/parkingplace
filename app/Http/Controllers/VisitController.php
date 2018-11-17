@@ -42,7 +42,7 @@ class VisitController extends Controller
         $visit->user_id = auth()->id();
         $visit->save();
 
-        return $visit;
+        return redirect('home');
     }
 
     /**

@@ -14,7 +14,21 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @if (! auth()->user()->isInGarage())
+                        You are not in the Garage.
+
+                        @if (auth()->user()->canEnterGarage())
+                            <form action="/visits" method="POST">
+                                @csrf
+                                <button class="btn btn-lg btn-primary">Enter Garage</button>
+                            </form>
+                        @endif
+                    @else
+                        You are in the Garage!
+                        
+                    @endif
+
+
                 </div>
             </div>
         </div>

@@ -35,7 +35,14 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Visit::class);
+
+        $visit = new Visit();
+        $visit->starting_at = now();
+        $visit->user_id = auth()->id();
+        $visit->save();
+
+        return $visit;
     }
 
     /**

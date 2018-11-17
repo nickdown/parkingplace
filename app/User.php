@@ -41,4 +41,15 @@ class User extends Authenticatable
 
         return $visit;
     }
+
+    public function isInGarage()
+    {
+        if ($this->visits()->count() == 0) {
+            return false;
+        }
+
+        $latestVisit = $this->visits()->orderBy('starting_at', 'desc')->first();
+
+        return $latestVisit->ending_at == null;
+    }
 }

@@ -16,7 +16,7 @@ class GarageHasRoom extends Model implements EntryRuleInterface
 
     public function failureDescription()
     {
-        return "The user is in the garage";
+        return "There is no room for another car in the garage.";
     }
 
     public function confirm()

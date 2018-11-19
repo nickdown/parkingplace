@@ -25,7 +25,7 @@ class UserCanEnterTheGarageTest extends TestCase
         $user = factory('App\User')->create();
         $this->assertSame(0, $user->visits()->count());
 
-        $user->enterGarage();
+        $user->garage()->enter();
         $user->refresh();
 
         $this->assertSame(1, $user->visits()->count());
@@ -36,7 +36,7 @@ class UserCanEnterTheGarageTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $user->enterGarage();
+        $user->garage()->enter();
         
         $this->assertFalse($user->canEnterGarage());
     }
@@ -46,7 +46,7 @@ class UserCanEnterTheGarageTest extends TestCase
     {
         $this->expectException(Exception::class);
         $user = factory('App\User')->create();
-        $user->enterGarage();
+        $user->garage()->enter();
 
         $user->enterGarage();
     }

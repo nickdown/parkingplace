@@ -31,7 +31,7 @@ class EntryControllerTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $user->enterGarage();
+        $user->garage()->enter();
 
         $this->actingAs($user)->json('POST', '/visits')->assertStatus(403);
     }

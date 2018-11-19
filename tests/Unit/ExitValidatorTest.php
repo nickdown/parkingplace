@@ -17,7 +17,7 @@ class ExitValidatorTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $user->enterGarage();
+        $user->garage()->enter();
 
         $this->assertTrue(ExitValidator::confirm($user));
     }

@@ -16,7 +16,7 @@ class UserExitsGarageTest extends TestCase
     {
         $user = factory('App\User')->create();
         
-        $user->enterGarage();
+        $user->garage()->enter();
         $user->exitGarage();
 
         $this->assertFalse($user->isInGarage());

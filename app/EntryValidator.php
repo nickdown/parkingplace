@@ -18,7 +18,9 @@ class EntryValidator extends Model
     {
         foreach ($this->entryRules as $rule)
         {
-            if (! (new $rule($user))->confirm()) {
+            $rule = new $rule($user);
+            
+            if (! $rule->confirm()) {
                 throw new Exception($rule->failureDescription());
             }
         }

@@ -26,7 +26,7 @@ class EntryController extends Controller
 
             return redirect('home');
         } catch (Exception $e) {
-            return response('home', 403);
+            return response($e->getMessage(), 403);
         }
     }
 }

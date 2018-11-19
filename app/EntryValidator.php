@@ -9,14 +9,14 @@ use App\Rules\EntryRules\UserNotInGarage;
 
 class EntryValidator extends Model
 {
-    protected $entryRules = [
-        GarageHasRoom::class,        
-        UserNotInGarage::class,
-    ];
-
-    public function confirm($user)
+    public static function confirm($user)
     {
-        foreach ($this->entryRules as $rule)
+        $entryRules = [
+            GarageHasRoom::class,        
+            UserNotInGarage::class,
+        ];
+
+        foreach ($entryRules as $rule)
         {
             $rule = new $rule($user);
             

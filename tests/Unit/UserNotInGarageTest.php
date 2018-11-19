@@ -15,19 +15,19 @@ class UserNotInGarageTest extends TestCase
     public function a_user_not_in_the_garage_will_pass_the_confirmation()
     {
         $user = factory('App\User')->create();
-        $rule = new UserNotInGarage();
+        $rule = new UserNotInGarage($user);
 
-        $this->assertTrue($rule->confirm($user));
+        $this->assertTrue($rule->confirm());
     }
 
     /** @test */
     public function a_user_already_in_the_garage_will_not_pass_the_confirmation()
     {
         $user = factory('App\User')->create();
-        $rule = new UserNotInGarage();
+        $rule = new UserNotInGarage($user);
 
         $user->enterGarage();
 
-        $this->assertFalse($rule->confirm($user));
+        $this->assertFalse($rule->confirm());
     }
 }

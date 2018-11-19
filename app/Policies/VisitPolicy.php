@@ -30,7 +30,7 @@ class VisitPolicy
      */
     public function create(User $user)
     {
-        return $user->canEnterGarage();
+        //
     }
 
     /**

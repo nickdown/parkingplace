@@ -19,7 +19,7 @@ class UserHasACurrentVisitTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $visit = $user->enterGarage();
+        $visit = $user->garage()->enter();
 
         $this->assertSame($visit->id, $user->currentVisit->id);
     }

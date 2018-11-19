@@ -21,6 +21,6 @@ class UserMustBeInTheGarage extends Model implements ExitRuleInterface
 
     public function confirm()
     {
-        return $this->user->isInGarage();
+        return $this->user->garage()->inside();
     }
 }

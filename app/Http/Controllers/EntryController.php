@@ -22,7 +22,7 @@ class EntryController extends Controller
         try {
             $entryValidator = EntryValidator::confirm($user);
 
-            $user->enterGarage();
+            $user->garage()->enter();
 
             return redirect('home');
         } catch (Exception $e) {

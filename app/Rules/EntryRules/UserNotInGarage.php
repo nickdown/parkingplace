@@ -21,6 +21,6 @@ class UserNotInGarage extends Model implements EntryRuleInterface
 
     public function confirm()
     {
-        return ! $this->user->isInGarage();
+        return ! $this->user->garage()->inside();
     }
 }

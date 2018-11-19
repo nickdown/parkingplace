@@ -16,10 +16,10 @@ class UserExitsGarageTest extends TestCase
     {
         $user = factory('App\User')->create();
         
-        $user->enterGarage();
-        $user->exitGarage();
+        $user->garage()->enter();
+        $user->garage()->exit();
 
-        $this->assertFalse($user->isInGarage());
+        $this->assertFalse($user->garage()->inside());
     }
 
     /** @test */
@@ -28,6 +28,6 @@ class UserExitsGarageTest extends TestCase
         $this->expectException(Exception::class);
         $user = factory('App\User')->create();
 
-        $user->exitGarage();
+        $user->garage()->exit();
     }
 }

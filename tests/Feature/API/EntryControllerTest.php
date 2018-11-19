@@ -31,7 +31,21 @@ class EntryControllerTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $user->enterGarage();
+        $user->garage()->enter();
+
+        $this->actingAs($user)->json('POST', '/visits')->assertStatus(403);
+    }
+
+    /** @test */
+    public function a_user_cant_enter_when_garage_is_full()
+    {
+        $user = factory('App\User')->create();
+
+        config(['garage.spots' => 3]);
+
+        $visit = factory('App\Visit', 3)->create([
+            'ending_at' => null
+        ]);
 
         $this->actingAs($user)->json('POST', '/visits')->assertStatus(403);
     }

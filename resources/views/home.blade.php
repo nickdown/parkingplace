@@ -14,15 +14,13 @@
                         </div>
                     @endif
 
-                    @if (! auth()->user()->isInGarage())
+                    @if (! auth()->user()->garage()->inside())
                         You are not in the Garage.
 
-                        @if (auth()->user()->canEnterGarage())
-                            <form action="/visits" method="POST">
-                                @csrf
-                                <button class="btn btn-lg btn-primary">Enter Garage</button>
-                            </form>
-                        @endif
+                        <form action="/visits" method="POST">
+                            @csrf
+                            <button class="btn btn-lg btn-primary">Enter Garage</button>
+                        </form>
                     @else
                         You are in the Garage!
                         <form action="/exits" method="POST">

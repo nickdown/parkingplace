@@ -26,7 +26,7 @@ class UserNotInGarageTest extends TestCase
         $user = factory('App\User')->create();
         $rule = new UserNotInGarage($user);
 
-        $user->enterGarage();
+        $user->garage()->enter();
 
         $this->assertFalse($rule->confirm());
     }

@@ -14,12 +14,12 @@ class ExitControllerTest extends TestCase
     public function a_new_user_can_exit_the_garage_with_the_api()
     {
         $user = factory('App\User')->create();        
-        $user->enterGarage();
-        $this->assertTrue($user->isInGarage());
+        $user->garage()->enter();
+        $this->assertTrue($user->garage()->inside());
 
         $this->actingAs($user)->json('POST', '/exits');
 
-        $this->assertFalse($user->isInGarage());
+        $this->assertFalse($user->garage()->inside());
     }
     
     /** @test */

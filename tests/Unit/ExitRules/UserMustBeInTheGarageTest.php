@@ -17,7 +17,7 @@ class UserMustBeInTheGarageTest extends TestCase
         $user = factory('App\User')->create();
         $rule = new UserMustBeInTheGarage($user);
 
-        $user->enterGarage();
+        $user->garage()->enter();
 
         $this->assertTrue($rule->confirm());
     }

@@ -24,7 +24,7 @@ class ExitController extends Controller
             return response($e->getMessage(), 403);
         }
 
-        $user->exitGarage();
+        $user->garage()->exit();
 
         return redirect('home');
     }

@@ -40,17 +40,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Visit');
     }
 
-    public function isInGarage()
-    {
-        if ($this->visits()->count() == 0) {
-            return false;
-        }
-
-        $latestVisit = $this->visits()->orderBy('starting_at', 'desc')->first();
-
-        return $latestVisit->ending_at == null;
-    }
-
     public function getCurrentVisitAttribute()
     {
         return $this->visits()->orderBy('starting_at', 'desc')->where('ending_at', null)->first();

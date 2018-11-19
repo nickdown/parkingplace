@@ -15,7 +15,7 @@ class UserCanReportIfTheyAreInTheGarageTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $this->assertFalse($user->isInGarage());
+        $this->assertFalse($user->garage()->inside());
     }
 
     /** @test */
@@ -25,7 +25,7 @@ class UserCanReportIfTheyAreInTheGarageTest extends TestCase
 
         $user->garage()->enter();
 
-        $this->assertTrue($user->isInGarage());
+        $this->assertTrue($user->garage()->inside());
     }
 
     /** @test */
@@ -36,7 +36,7 @@ class UserCanReportIfTheyAreInTheGarageTest extends TestCase
             'user_id' => $user->id
         ]);
         
-        $this->assertFalse($user->isInGarage());
+        $this->assertFalse($user->garage()->inside());
     }
 
     /** @test */
@@ -49,6 +49,6 @@ class UserCanReportIfTheyAreInTheGarageTest extends TestCase
 
         $user->garage()->enter();
 
-        $this->assertTrue($user->isInGarage());
+        $this->assertTrue($user->garage()->inside());
     }
 }

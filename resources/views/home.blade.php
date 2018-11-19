@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    @if (! auth()->user()->isInGarage())
+                    @if (! auth()->user()->garage()->inside())
                         You are not in the Garage.
 
                         <form action="/visits" method="POST">

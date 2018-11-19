@@ -35,7 +35,7 @@ class Garage extends Model
 
     public function exit()
     {
-        if (! $this->user->isInGarage()) {
+        if (! $this->inside()) {
             throw new Exception('User not in garage');
         }
 
@@ -45,5 +45,10 @@ class Garage extends Model
 
 
         return $visit;
+    }
+
+    public function inside()
+    {
+        return $this->user->currentVisit != null;
     }
 }

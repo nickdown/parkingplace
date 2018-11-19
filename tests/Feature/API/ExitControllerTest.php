@@ -15,11 +15,11 @@ class ExitControllerTest extends TestCase
     {
         $user = factory('App\User')->create();        
         $user->garage()->enter();
-        $this->assertTrue($user->isInGarage());
+        $this->assertTrue($user->garage()->inside());
 
         $this->actingAs($user)->json('POST', '/exits');
 
-        $this->assertFalse($user->isInGarage());
+        $this->assertFalse($user->garage()->inside());
     }
     
     /** @test */

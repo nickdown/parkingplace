@@ -19,7 +19,7 @@ class UserExitsGarageTest extends TestCase
         $user->garage()->enter();
         $user->garage()->exit();
 
-        $this->assertFalse($user->isInGarage());
+        $this->assertFalse($user->garage()->inside());
     }
 
     /** @test */

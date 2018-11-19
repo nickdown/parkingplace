@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Exception;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,7 +37,7 @@ class User extends Authenticatable
     public function enterGarage()
     {
         if (! $this->canEnterGarage()) {
-            throw new \Exception('User cannot enter the garage');
+            throw new Exception('User cannot enter the garage');
         }
 
         $visit = $this->visits()->create([
@@ -63,5 +64,10 @@ class User extends Authenticatable
             return false;
         }
         return true;
+    }
+
+    public function getCurrentVisitAttribute()
+    {
+        return $this->visits()->orderBy('starting_at', 'desc')->where('ending_at', null)->first();
     }
 }

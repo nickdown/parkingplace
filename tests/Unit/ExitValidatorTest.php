@@ -31,7 +31,7 @@ class ExitValidatorTest extends TestCase
         $user = factory('App\User')->create();
         $exitValidator = new ExitValidator();
 
-        //user won't be in the garage, so the UserInGarage confirm will fail and ExitValidator will throw an exception
+        //user won't be in the garage, so the UserMustBeInTheGarage confirmation will fail and ExitValidator will throw an exception
         $exitValidator->confirm($user);
     }
 }

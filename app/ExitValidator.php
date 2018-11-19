@@ -4,13 +4,13 @@ namespace App;
 
 use Exception;
 use App\Rules\ExitRules\UserHasPaid;
-use App\Rules\ExitRules\UserInGarage;
 use Illuminate\Database\Eloquent\Model;
+use App\Rules\ExitRules\UserMustBeInTheGarage;
 
 class ExitValidator extends Model
 {
     protected $exitRules = [
-       UserInGarage::class,
+       UserMustBeInTheGarage::class,
        UserHasPaid::class,
     ];
 

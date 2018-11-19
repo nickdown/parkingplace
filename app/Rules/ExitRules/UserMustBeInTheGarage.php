@@ -5,7 +5,7 @@ namespace App\Rules\ExitRules;
 use Illuminate\Database\Eloquent\Model;
 use App\Rules\ExitRules\ExitRuleInterface;
 
-class UserInGarage extends Model implements ExitRuleInterface
+class UserMustBeInTheGarage extends Model implements ExitRuleInterface
 {
     protected $user;
 
@@ -16,7 +16,7 @@ class UserInGarage extends Model implements ExitRuleInterface
 
     public function failureDescription()
     {
-        return "The user is in the garage";
+        return "The user is not in the garage";
     }
 
     public function confirm()

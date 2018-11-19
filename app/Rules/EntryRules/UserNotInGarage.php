@@ -16,7 +16,7 @@ class UserNotInGarage extends Model implements EntryRuleInterface
 
     public function failureDescription()
     {
-        return "The user is in the garage";
+        return "The user is already in the garage.";
     }
 
     public function confirm()

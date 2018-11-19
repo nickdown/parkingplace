@@ -9,14 +9,14 @@ use App\Rules\ExitRules\UserMustBeInTheGarage;
 
 class ExitValidator extends Model
 {
-    protected $exitRules = [
-       UserMustBeInTheGarage::class,
-       UserHasPaid::class,
-    ];
-
-    public function confirm($user)
+    public static function confirm($user)
     {
-        foreach ($this->exitRules as $rule)
+        $exitRules = [
+            UserMustBeInTheGarage::class,
+            UserHasPaid::class,
+        ];
+
+        foreach ($exitRules as $rule)
         {
             $rule = new $rule($user);
             

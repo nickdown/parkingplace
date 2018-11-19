@@ -36,4 +36,18 @@ class Garage extends Model
 
         return $visit;
     }
+
+    public function exit()
+    {
+        if (! $this->user->isInGarage()) {
+            throw new Exception('User not in garage');
+        }
+
+        $visit = $this->user->currentVisit;
+        $visit->ending_at = now();
+        $visit->save();
+
+
+        return $visit;
+    }
 }

@@ -39,20 +39,6 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Visit');
     }
-    
-    public function exitGarage()
-    {
-        if (! $this->isInGarage()) {
-            throw new Exception('User not in garage');
-        }
-
-        $visit = $this->currentVisit;
-        $visit->ending_at = now();
-        $visit->save();
-
-
-        return $visit;
-    }
 
     public function isInGarage()
     {

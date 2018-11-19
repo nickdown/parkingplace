@@ -51,14 +51,6 @@ class User extends Authenticatable
         return $latestVisit->ending_at == null;
     }
 
-    public function canEnterGarage()
-    {
-        if ($this->isInGarage()) {
-            return false;
-        }
-        return true;
-    }
-
     public function getCurrentVisitAttribute()
     {
         return $this->visits()->orderBy('starting_at', 'desc')->where('ending_at', null)->first();

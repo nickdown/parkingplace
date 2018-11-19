@@ -26,10 +26,6 @@ class Garage extends Model
 
     public function enter()
     {
-        if (! $this->user->canEnterGarage()) {
-            throw new Exception('User cannot enter the garage');
-        }
-
         $visit = $this->user->visits()->create([
             'starting_at' => now()
         ]);

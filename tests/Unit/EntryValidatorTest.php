@@ -16,22 +16,19 @@ class EntryValidatorTest extends TestCase
     public function entry_validator_confirms_user()
     {
         $user = factory('App\User')->create();
-        $entryValidator = new EntryValidator();
 
-        $this->assertTrue($entryValidator->confirm($user));
+        $this->assertTrue(EntryValidator::confirm($user));
     }
 
     /** @test */
     public function entry_validator_throws_exception_if_a_rule_is_not_confirmed()
     {
         $this->expectException(Exception::class);
-
         $user = factory('App\User')->create();
-        $entryValidator = new EntryValidator();
 
-        //user will already be in garage, thus the NotInGarage entry rule will not confirm positively
         $user->enterGarage();
-
-        $entryValidator->confirm($user);
+        
+        //user will already be in garage, thus the NotInGarage entry rule will not confirm positively
+        EntryValidator::confirm($user);
     }
 }

@@ -11,14 +11,15 @@ class UserCanReportIfTheyAreInTheGarageTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function the_first_time_user_is_not_in_the_garage()
+    public function a_new_user_is_not_in_the_garage()
     {
         $user = factory('App\User')->create();
+
         $this->assertFalse($user->isInGarage());
     }
 
     /** @test */
-    public function the_first_time_user_is_in_the_garage()
+    public function a_user_can_report_they_are_in_the_garage()
     {
         $user = factory('App\User')->create();
 
@@ -28,7 +29,7 @@ class UserCanReportIfTheyAreInTheGarageTest extends TestCase
     }
 
     /** @test */
-    public function the_multiple_time_user_is_not_in_the_garage()
+    public function a_multiple_time_user_is_not_in_the_garage()
     {
         $user = factory('App\User')->create();
         $visits = factory('App\Visit', 3)->create([
@@ -39,7 +40,7 @@ class UserCanReportIfTheyAreInTheGarageTest extends TestCase
     }
 
     /** @test */
-    public function the_multiple_time_user_is_in_the_garage()
+    public function a_multiple_time_user_is_in_the_garage()
     {
         $user = factory('App\User')->create();
         $visits = factory('App\Visit', 3)->create([

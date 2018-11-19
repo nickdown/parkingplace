@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\EntryRules;
 
 use Tests\TestCase;
 use App\Rules\EntryRules\GarageHasRoom;

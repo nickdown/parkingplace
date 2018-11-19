@@ -2,6 +2,7 @@
 
 namespace App\Rules\EntryRules;
 
+use App\Garage;
 use Illuminate\Database\Eloquent\Model;
 use App\Rules\EntryRules\EntryRuleInterface;
 
@@ -21,7 +22,8 @@ class GarageHasRoom extends Model implements EntryRuleInterface
 
     public function confirm()
     {
-        // the garage has infinite spots for now
-        return true;
+        $garage = new Garage();
+
+        return ! $garage->full();
     }
 }

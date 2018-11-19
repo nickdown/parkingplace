@@ -20,4 +20,34 @@ class GarageHasRoomTest extends TestCase
 
         $this->assertTrue($rule->confirm());
     }
+
+    /** @test */
+    public function garage_has_room_passes()
+    {
+        $rule = new GarageHasRoom();
+
+        config(['garage.spots' => 3]);
+
+        $visit = factory('App\Visit', 2)->create([
+            'ending_at' => null
+        ]);
+
+
+        $this->assertTrue($rule->confirm());
+    }
+
+    /** @test */
+    public function garage_has_room_does_not_pass_when_garage_is_full()
+    {
+        $rule = new GarageHasRoom();
+
+        config(['garage.spots' => 3]);
+
+        $visit = factory('App\Visit', 3)->create([
+            'ending_at' => null
+        ]);
+
+
+        $this->assertFalse($rule->confirm());
+    }
 }

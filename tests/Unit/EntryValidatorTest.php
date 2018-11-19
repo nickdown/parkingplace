@@ -26,7 +26,7 @@ class EntryValidatorTest extends TestCase
         $this->expectException(Exception::class);
         $user = factory('App\User')->create();
 
-        $user->enterGarage();
+        $user->garage()->enter();
         
         //user will already be in garage, thus the NotInGarage entry rule will not confirm positively
         EntryValidator::confirm($user);

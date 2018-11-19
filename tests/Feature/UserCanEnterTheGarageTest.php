@@ -48,6 +48,6 @@ class UserCanEnterTheGarageTest extends TestCase
         $user = factory('App\User')->create();
         $user->garage()->enter();
 
-        $user->enterGarage();
+        $user->garage()->enter();
     }
 }

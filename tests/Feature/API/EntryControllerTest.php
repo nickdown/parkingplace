@@ -34,9 +34,5 @@ class EntryControllerTest extends TestCase
         $user->enterGarage();
 
         $this->actingAs($user)->json('POST', '/visits')->assertStatus(403);
-
-        $this->assertDatabaseHas('visits', [
-            'user_id' => $user->id
-        ]);
     }
 }

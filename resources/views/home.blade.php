@@ -25,7 +25,10 @@
                         @endif
                     @else
                         You are in the Garage!
-                        
+                        <form action="/exits" method="POST">
+                            @csrf
+                            <button class="btn btn-lg btn-primary">Exit Garage</button>
+                        </form>
                     @endif
 
 

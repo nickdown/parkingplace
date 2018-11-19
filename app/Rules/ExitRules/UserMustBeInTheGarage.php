@@ -16,7 +16,7 @@ class UserMustBeInTheGarage extends Model implements ExitRuleInterface
 
     public function failureDescription()
     {
-        return "The user is not in the garage";
+        return "The user is not in the garage.";
     }
 
     public function confirm()

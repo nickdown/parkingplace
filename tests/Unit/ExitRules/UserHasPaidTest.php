@@ -17,8 +17,6 @@ class UserHasPaidTest extends TestCase
         $user = factory('App\User')->create();
         $rule = new UserHasPaid($user);
 
-        $user->enterGarage();
-
         $this->assertTrue($rule->confirm());
     }
 }

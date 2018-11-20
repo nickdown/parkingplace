@@ -15,13 +15,13 @@ class EntryControllerTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $this->assertDatabaseMissing('visits', [
+        $this->assertDatabaseMissing('tickets', [
             'user_id' => $user->id
         ]);
 
-        $this->actingAs($user)->json('POST', '/visits');
+        $this->actingAs($user)->json('POST', '/tickets');
 
-        $this->assertDatabaseHas('visits', [
+        $this->assertDatabaseHas('tickets', [
             'user_id' => $user->id
         ]);
     }
@@ -33,7 +33,7 @@ class EntryControllerTest extends TestCase
 
         $user->garage()->enter();
 
-        $this->actingAs($user)->json('POST', '/visits')->assertStatus(403);
+        $this->actingAs($user)->json('POST', '/tickets')->assertStatus(403);
     }
 
     /** @test */
@@ -43,10 +43,10 @@ class EntryControllerTest extends TestCase
 
         config(['garage.spots' => 3]);
 
-        $visit = factory('App\Visit', 3)->create([
+        $ticket = factory('App\Ticket', 3)->create([
             'ending_at' => null
         ]);
 
-        $this->actingAs($user)->json('POST', '/visits')->assertStatus(403);
+        $this->actingAs($user)->json('POST', '/tickets')->assertStatus(403);
     }
 }

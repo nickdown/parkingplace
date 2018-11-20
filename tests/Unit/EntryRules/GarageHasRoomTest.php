@@ -28,7 +28,7 @@ class GarageHasRoomTest extends TestCase
 
         config(['garage.spots' => 3]);
 
-        $visit = factory('App\Visit', 2)->create([
+        $ticket = factory('App\Ticket', 2)->create([
             'ending_at' => null
         ]);
 
@@ -43,7 +43,7 @@ class GarageHasRoomTest extends TestCase
 
         config(['garage.spots' => 3]);
 
-        $visit = factory('App\Visit', 3)->create([
+        $ticket = factory('App\Ticket', 3)->create([
             'ending_at' => null
         ]);
 

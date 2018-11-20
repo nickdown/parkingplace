@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Visit extends Model
+class Ticket extends Model
 {
     /**
      * The attributes that are mass assignable.

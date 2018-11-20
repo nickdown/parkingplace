@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RateCalculator extends Model
 {
-    public static function determine($visit)
+    public static function determine($ticket)
     {
         $rates = [
             OneHourRate::class,
@@ -21,7 +21,7 @@ class RateCalculator extends Model
 
         foreach ($rates as $rate)
         {
-            $rate = new $rate($visit);
+            $rate = new $rate($ticket);
             
             //return the first applicable rate
             if ($rate->isApplicable()) {

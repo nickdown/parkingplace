@@ -16,9 +16,9 @@ class RateCalculatorTest extends TestCase
     /** @test */
     public function rate_calculator_returns_a_rate()
     {
-        $visit = factory('App\Visit')->create();
+        $ticket = factory('App\Ticket')->create();
 
-        $rate = RateCalculator::determine($visit);
+        $rate = RateCalculator::determine($ticket);
 
         $this->assertInstanceOf(Rate::class, $rate);
     }

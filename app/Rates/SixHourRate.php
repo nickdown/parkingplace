@@ -4,11 +4,11 @@ namespace App\Rates;
 
 class SixHourRate extends Rate implements RateInterface
 {
-    protected $visit;
+    protected $ticket;
     
-    function __construct($visit)
+    function __construct($ticket)
     {
-        $this->visit = $visit;
+        $this->ticket = $ticket;
     }
 
     public function description()

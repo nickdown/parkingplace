@@ -26,11 +26,11 @@ class Garage extends Model
 
     public function enter()
     {
-        $visit = $this->user->visits()->create([
+        $ticket = $this->user->tickets()->create([
             'starting_at' => now()
         ]);
 
-        return $visit;
+        return $ticket;
     }
 
     public function exit()
@@ -39,16 +39,16 @@ class Garage extends Model
             throw new Exception('User not in garage');
         }
 
-        $visit = $this->user->currentVisit;
-        $visit->ending_at = now();
-        $visit->save();
+        $ticket = $this->user->currentTicket;
+        $ticket->ending_at = now();
+        $ticket->save();
 
 
-        return $visit;
+        return $ticket;
     }
 
     public function inside()
     {
-        return $this->user->currentVisit != null;
+        return $this->user->currentTicket != null;
     }
 }

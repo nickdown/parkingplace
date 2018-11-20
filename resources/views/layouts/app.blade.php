@@ -11,6 +11,13 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script>
+        var ParkingPlace = {
+            userEmail: "{{ optional(auth()->user())->email }}",
+            stripeKey: "{{ config('services.stripe.key') }}"
+        };
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">

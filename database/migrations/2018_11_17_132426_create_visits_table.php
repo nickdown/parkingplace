@@ -17,6 +17,8 @@ class CreateVisitsTable extends Migration
             $table->increments('id');
             $table->dateTime('starting_at');
             $table->dateTime('ending_at')->nullable();
+            $table->unsignedInteger('paid_amount')->nullable();
+            $table->dateTime('paid_at')->nullable();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

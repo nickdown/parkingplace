@@ -20,6 +20,12 @@ class Visit extends Model
         'updated_at',
         'deleted_at',
         'starting_at',
-        'ending_at'
+        'ending_at',
+        'paid_at'
     ];
+
+    public function isPaid()
+    {
+        return $this->paid_at != null;
+    }
 }

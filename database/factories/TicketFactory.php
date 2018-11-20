@@ -3,15 +3,15 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Ticket::class, function (Faker $faker) {
-    $startingAt = $faker->unixTime();
+    $enteredAt = $faker->unixTime();
     
     return [
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },
-        'starting_at' => $startingAt,
+        'entered_at' => $enteredAt,
         
-        //end within 9 hours
-        'ending_at' => $startingAt + random_int(1, 9*60*60),
+        //exit within 9 hours
+        'exited_at' => $enteredAt + random_int(1, 9*60*60),
     ];
 });

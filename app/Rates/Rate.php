@@ -6,9 +6,9 @@ abstract class Rate
 {
     public function duration()
     {
-        $starting_at = $this->ticket->starting_at;
-        $ending_at = $this->ticket->ending_at ?? now();
+        $entered_at = $this->ticket->entered_at;
+        $exited_at = $this->ticket->exited_at ?? now();
 
-        return $starting_at->diffInMinutes($ending_at);
+        return $entered_at->diffInMinutes($exited_at);
     }
 }

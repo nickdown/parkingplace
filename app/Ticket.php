@@ -12,15 +12,15 @@ class Ticket extends Model
      * @var array
      */
     protected $fillable = [
-        'starting_at'
+        'entered_at'
     ];
 
     protected $dates = [
         'created_at',
         'updated_at',
         'deleted_at',
-        'starting_at',
-        'ending_at',
+        'entered_at',
+        'exited_at',
         'paid_at'
     ];
 

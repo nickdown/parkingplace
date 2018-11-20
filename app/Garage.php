@@ -27,7 +27,7 @@ class Garage extends Model
     public function enter()
     {
         $ticket = $this->user->tickets()->create([
-            'starting_at' => now()
+            'entered_at' => now()
         ]);
 
         return $ticket;
@@ -40,7 +40,7 @@ class Garage extends Model
         }
 
         $ticket = $this->user->currentTicket;
-        $ticket->ending_at = now();
+        $ticket->exited_at = now();
         $ticket->save();
 
 

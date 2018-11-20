@@ -15,8 +15,8 @@ class AllDayRateTest extends TestCase
     public function not_applicable_for_6_hour_ticket()
     {
         $ticket = factory('App\Ticket')->create([
-            'starting_at' => now()->subHours(6),
-            'ending_at' => now()
+            'entered_at' => now()->subHours(6),
+            'exited_at' => now()
         ]);
 
         $rate = new AllDayRate($ticket);
@@ -28,8 +28,8 @@ class AllDayRateTest extends TestCase
     public function applicable_for_6_hour_one_minute_ticket()
     {
         $ticket = factory('App\Ticket')->create([
-            'starting_at' => now()->subHours(6)->subMinutes(1),
-            'ending_at' => now()
+            'entered_at' => now()->subHours(6)->subMinutes(1),
+            'exited_at' => now()
         ]);
 
         $rate = new AllDayRate($ticket);

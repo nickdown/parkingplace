@@ -19,7 +19,7 @@ class GarageTest extends TestCase
         config(['garage.spots' => 3]);
 
         $ticket = factory('App\Ticket', 2)->create([
-            'ending_at' => null
+            'exited_at' => null
         ]);
 
         $this->assertFalse($garage->full());
@@ -32,7 +32,7 @@ class GarageTest extends TestCase
         config(['garage.spots' => 3]);
 
         $ticket = factory('App\Ticket', 3)->create([
-            'ending_at' => null
+            'exited_at' => null
         ]);
 
         $this->assertTrue($garage->full());

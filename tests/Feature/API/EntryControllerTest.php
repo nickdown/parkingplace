@@ -44,7 +44,7 @@ class EntryControllerTest extends TestCase
         config(['garage.spots' => 3]);
 
         $ticket = factory('App\Ticket', 3)->create([
-            'ending_at' => null
+            'exited_at' => null
         ]);
 
         $this->actingAs($user)->json('POST', '/tickets')->assertStatus(403);

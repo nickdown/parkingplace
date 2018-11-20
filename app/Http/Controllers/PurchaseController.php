@@ -11,8 +11,6 @@ class PurchaseController extends Controller
 {
     public function store(Request $request)
     {
-        info($request->all());
-
         Stripe::setApiKey(config('services.stripe.secret'));
 
         $customer = Customer::create([
@@ -25,8 +23,6 @@ class PurchaseController extends Controller
             'amount' => 100,
             'currency' => 'cad',
         ]);
-
-        info('payment succeeded');
 
         return 'Successfully charged card';
     }

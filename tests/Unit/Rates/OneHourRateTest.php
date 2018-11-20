@@ -12,40 +12,40 @@ class OneHourRateTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function applicable_for_0_minute_visit()
+    public function applicable_for_0_minute_ticket()
     {
-        $visit = factory('App\Visit')->create([
+        $ticket = factory('App\Ticket')->create([
             'starting_at' => now(),
             'ending_at' => now()
         ]);
 
-        $rate = new OneHourRate($visit);
+        $rate = new OneHourRate($ticket);
 
         $this->assertTrue($rate->isApplicable());
     }
 
     /** @test */
-    public function applicable_for_1_hour_visit()
+    public function applicable_for_1_hour_ticket()
     {
-        $visit = factory('App\Visit')->create([
+        $ticket = factory('App\Ticket')->create([
             'starting_at' => now()->subHours(1),
             'ending_at' => now()
         ]);
 
-        $rate = new OneHourRate($visit);
+        $rate = new OneHourRate($ticket);
 
         $this->assertTrue($rate->isApplicable());
     }
 
     /** @test */
-    public function not_applicable_for_1_hour_1_minute_visit()
+    public function not_applicable_for_1_hour_1_minute_ticket()
     {
-        $visit = factory('App\Visit')->create([
+        $ticket = factory('App\Ticket')->create([
             'starting_at' => now()->subHours(1)->subMinutes(1),
             'ending_at' => now()
         ]);
 
-        $rate = new OneHourRate($visit);
+        $rate = new OneHourRate($ticket);
 
         $this->assertFalse($rate->isApplicable());
     }

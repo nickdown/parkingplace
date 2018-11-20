@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Visit::class, function (Faker $faker) {
+$factory->define(App\Ticket::class, function (Faker $faker) {
     $startingAt = $faker->unixTime();
     
     return [

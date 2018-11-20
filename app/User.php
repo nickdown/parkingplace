@@ -36,13 +36,13 @@ class User extends Authenticatable
         return new Garage($this);
     }
 
-    public function visits()
+    public function tickets()
     {
-        return $this->hasMany('App\Visit');
+        return $this->hasMany('App\Ticket');
     }
 
-    public function getCurrentVisitAttribute()
+    public function getCurrentTicketAttribute()
     {
-        return $this->visits()->orderBy('starting_at', 'desc')->where('ending_at', null)->first();
+        return $this->tickets()->orderBy('starting_at', 'desc')->where('ending_at', null)->first();
     }
 }

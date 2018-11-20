@@ -15,11 +15,11 @@ class UserCanEnterTheGarageTest extends TestCase
     public function a_user_can_enter_the_garage()
     {
         $user = factory('App\User')->create();
-        $this->assertSame(0, $user->visits()->count());
+        $this->assertSame(0, $user->tickets()->count());
 
         $user->garage()->enter();
         $user->refresh();
 
-        $this->assertSame(1, $user->visits()->count());
+        $this->assertSame(1, $user->tickets()->count());
     }
 }

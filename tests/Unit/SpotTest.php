@@ -31,7 +31,7 @@ class SpotTest extends TestCase
 
         $this->assertSame(0, $garageSpots->used());
 
-        factory('App\Visit', 3)->create([
+        factory('App\Ticket', 3)->create([
             'ending_at' => null
         ]);
 
@@ -47,7 +47,7 @@ class SpotTest extends TestCase
 
         $this->assertSame(10, $garageSpots->available());
 
-        factory('App\Visit', 3)->create([
+        factory('App\Ticket', 3)->create([
             'ending_at' => null
         ]);
 
@@ -63,7 +63,7 @@ class SpotTest extends TestCase
 
         $this->assertSame(10, $garageSpots->available());
 
-        factory('App\Visit', 11)->create([
+        factory('App\Ticket', 11)->create([
             'ending_at' => null
         ]);
         

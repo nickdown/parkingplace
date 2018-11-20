@@ -12,53 +12,53 @@ class ThreeHourRateTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function not_applicable_for_60_minute_visit()
+    public function not_applicable_for_60_minute_ticket()
     {
-        $visit = factory('App\Visit')->create([
+        $ticket = factory('App\Ticket')->create([
             'starting_at' => now()->subHours(1),
             'ending_at' => now()
         ]);
 
-        $rate = new ThreeHourRate($visit);
+        $rate = new ThreeHourRate($ticket);
 
         $this->assertFalse($rate->isApplicable());
     }
 
     /** @test */
-    public function applicable_for_1_hour_1_minute_visit()
+    public function applicable_for_1_hour_1_minute_ticket()
     {
-        $visit = factory('App\Visit')->create([
+        $ticket = factory('App\Ticket')->create([
             'starting_at' => now()->subHours(1)->subMinutes(1),
             'ending_at' => now()
         ]);
 
-        $rate = new ThreeHourRate($visit);
+        $rate = new ThreeHourRate($ticket);
 
         $this->assertTrue($rate->isApplicable());
     }
 
     /** @test */
-    public function applicable_for_3_hour_visit()
+    public function applicable_for_3_hour_ticket()
     {
-        $visit = factory('App\Visit')->create([
+        $ticket = factory('App\Ticket')->create([
             'starting_at' => now()->subHours(3),
             'ending_at' => now()
         ]);
 
-        $rate = new ThreeHourRate($visit);
+        $rate = new ThreeHourRate($ticket);
 
         $this->assertTrue($rate->isApplicable());
     }
 
     /** @test */
-    public function not_applicable_for_3_hour_1_minute_visit()
+    public function not_applicable_for_3_hour_1_minute_ticket()
     {
-        $visit = factory('App\Visit')->create([
+        $ticket = factory('App\Ticket')->create([
             'starting_at' => now()->subHours(3)->subMinutes(1),
             'ending_at' => now()
         ]);
 
-        $rate = new ThreeHourRate($visit);
+        $rate = new ThreeHourRate($ticket);
 
         $this->assertFalse($rate->isApplicable());
     }

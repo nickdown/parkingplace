@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Visit;
+use App\Ticket;
 use App\EntryValidator;
 use Illuminate\Http\Request;
 

@@ -3,7 +3,7 @@
 namespace App\Rates;
 
 interface RateInterface {
-    function __construct($visit);
+    function __construct($ticket);
     
     public function description();
 

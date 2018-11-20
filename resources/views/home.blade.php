@@ -17,7 +17,7 @@
                     @if (! auth()->user()->garage()->inside())
                         You are not in the Garage.
 
-                        <form action="/visits" method="POST">
+                        <form action="/tickets" method="POST">
                             @csrf
                             <button class="btn btn-lg btn-primary">Enter Garage</button>
                         </form>

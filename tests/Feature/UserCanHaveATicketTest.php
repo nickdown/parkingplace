@@ -6,29 +6,29 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UserCanVisitTest extends TestCase
+class UserCanHaveATicketTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function user_can_have_a_visit()
+    public function user_can_have_a_ticket()
     {
         $user = factory('App\User')->create();
-        $visit = factory('App\Visit')->create([
+        $ticket = factory('App\Ticket')->create([
             'user_id' => $user->id
         ]);
 
-        $this->assertSame($user->visits()->first()->id, $visit->id);
+        $this->assertSame($user->tickets()->first()->id, $ticket->id);
     }
 
     /** @test */
-    public function user_can_have_many_visits()
+    public function user_can_have_many_tickets()
     {
         $user = factory('App\User')->create();
-        $visit = factory('App\Visit', 3)->create([
+        $ticket = factory('App\Ticket', 3)->create([
             'user_id' => $user->id
         ]);
 
-        $this->assertSame(3, $user->visits()->count());
+        $this->assertSame(3, $user->tickets()->count());
     }
 }

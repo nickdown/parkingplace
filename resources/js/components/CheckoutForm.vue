@@ -17,22 +17,17 @@
         },
 
         created() {
-
-            axios.get('/api/amen')
-                .then(response => alert('hmm'));
-                
             this.stripe = StripeCheckout.configure({
-                key: "pk_test_7O13bFRx1WGDjQEYqotv9vkl",
+                key: ParkingPlace.stripeKey,
                 image: "https://stripe.com/img/documentation/checkout/marketplace.png",
                 locale: "auto",
-                token: function (token) {
+                token: (token) => {
                     this.stripeToken = token.id;
                     this.stripeEmail = token.email;
 
                     axios.post('/api/purchases', this.$data)
-                        .then(response => alert('Complete! Thanks for paying!'));
+                        .then(response => alert(response.data));
                 }
-
             });
         },
 
@@ -46,6 +41,6 @@
                 });
             }
         }
-        
+    
     }
 </script>

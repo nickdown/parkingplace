@@ -15,8 +15,8 @@ class SixHourRateTest extends TestCase
     public function not_applicable_for_3_hour_ticket()
     {
         $ticket = factory('App\Ticket')->create([
-            'starting_at' => now()->subHours(3),
-            'ending_at' => now()
+            'entered_at' => now()->subHours(3),
+            'exited_at' => now()
         ]);
 
         $rate = new SixHourRate($ticket);
@@ -28,8 +28,8 @@ class SixHourRateTest extends TestCase
     public function applicable_for_3_hour_1_minute_ticket()
     {
         $ticket = factory('App\Ticket')->create([
-            'starting_at' => now()->subHours(3)->subMinutes(1),
-            'ending_at' => now()
+            'entered_at' => now()->subHours(3)->subMinutes(1),
+            'exited_at' => now()
         ]);
 
         $rate = new SixHourRate($ticket);
@@ -41,8 +41,8 @@ class SixHourRateTest extends TestCase
     public function applicable_for_6_hour_ticket()
     {
         $ticket = factory('App\Ticket')->create([
-            'starting_at' => now()->subHours(6),
-            'ending_at' => now()
+            'entered_at' => now()->subHours(6),
+            'exited_at' => now()
         ]);
 
         $rate = new SixHourRate($ticket);
@@ -54,8 +54,8 @@ class SixHourRateTest extends TestCase
     public function not_applicable_for_6_hour_1_minute_ticket()
     {
         $ticket = factory('App\Ticket')->create([
-            'starting_at' => now()->subHours(6)->subMinutes(1),
-            'ending_at' => now()
+            'entered_at' => now()->subHours(6)->subMinutes(1),
+            'exited_at' => now()
         ]);
 
         $rate = new SixHourRate($ticket);

@@ -43,6 +43,6 @@ class User extends Authenticatable
 
     public function getCurrentTicketAttribute()
     {
-        return $this->tickets()->orderBy('starting_at', 'desc')->where('ending_at', null)->first();
+        return $this->tickets()->orderBy('entered_at', 'desc')->where('exited_at', null)->first();
     }
 }

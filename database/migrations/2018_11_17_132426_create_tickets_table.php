@@ -15,8 +15,8 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('starting_at');
-            $table->dateTime('ending_at')->nullable();
+            $table->dateTime('entered_at');
+            $table->dateTime('exited_at')->nullable();
             $table->unsignedInteger('paid_amount')->nullable();
             $table->dateTime('paid_at')->nullable();
             $table->unsignedInteger('user_id');

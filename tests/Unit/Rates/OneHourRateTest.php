@@ -15,8 +15,8 @@ class OneHourRateTest extends TestCase
     public function applicable_for_0_minute_ticket()
     {
         $ticket = factory('App\Ticket')->create([
-            'starting_at' => now(),
-            'ending_at' => now()
+            'entered_at' => now(),
+            'exited_at' => now()
         ]);
 
         $rate = new OneHourRate($ticket);
@@ -28,8 +28,8 @@ class OneHourRateTest extends TestCase
     public function applicable_for_1_hour_ticket()
     {
         $ticket = factory('App\Ticket')->create([
-            'starting_at' => now()->subHours(1),
-            'ending_at' => now()
+            'entered_at' => now()->subHours(1),
+            'exited_at' => now()
         ]);
 
         $rate = new OneHourRate($ticket);
@@ -41,8 +41,8 @@ class OneHourRateTest extends TestCase
     public function not_applicable_for_1_hour_1_minute_ticket()
     {
         $ticket = factory('App\Ticket')->create([
-            'starting_at' => now()->subHours(1)->subMinutes(1),
-            'ending_at' => now()
+            'entered_at' => now()->subHours(1)->subMinutes(1),
+            'exited_at' => now()
         ]);
 
         $rate = new OneHourRate($ticket);

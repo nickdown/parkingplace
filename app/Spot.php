@@ -20,7 +20,7 @@ class Spot extends Model
 
     public function used()
     {
-        return Ticket::where('ending_at', null)->count();
+        return Ticket::where('exited_at', null)->count();
     }
 
     public function available()

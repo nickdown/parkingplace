@@ -14,6 +14,7 @@
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
         var ParkingPlace = {
+            userEmail: "{{ optional(auth()->user())->email }}",
             stripeKey: "{{ config('services.stripe.key') }}"
         };
     </script>

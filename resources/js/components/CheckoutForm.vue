@@ -23,6 +23,7 @@
                 key: ParkingPlace.stripeKey,
                 image: "https://stripe.com/img/documentation/checkout/marketplace.png",
                 locale: "auto",
+                email: ParkingPlace.userEmail,                
                 token: (token) => {
                     this.form.stripeToken = token.id;
                     this.form.stripeEmail = token.email;

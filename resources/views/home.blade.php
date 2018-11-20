@@ -23,13 +23,14 @@
                         </form>
                     @else
                         You are in the Garage!
+
+                        <checkout-form></checkout-form>
+
                         <form action="/exits" method="POST">
                             @csrf
                             <button class="btn btn-lg btn-primary">Exit Garage</button>
                         </form>
                     @endif
-
-
                 </div>
             </div>
         </div>

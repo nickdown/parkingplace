@@ -36,6 +36,8 @@
 
 <script>
     export default {
+        props: ['initialTicket'],
+
         data() {
             return {
                 ticket: {}
@@ -43,28 +45,27 @@
         },
 
         created() {
-            this.refreshTicket();
+            this.ticket = this.initialTicket;
+        },
+
+        watch: {
+            initialTicket: function (ticket) {
+                this.ticket = ticket;
+            }
         },
 
         methods: {
-            refreshTicket() {
-                axios.get('/api/tickets/current')
-                    .then(response => {
-                        this.ticket = response.data.data;
-                    });
-            },
-
-            toDollarString(amount) {
+            toDollarString (amount) {
                 return (amount / 100).toLocaleString("en-CA", {style:"currency", currency:"CAD"});
             }
         },
 
         computed: {
-            enteredAt: function() {
+            enteredAt: function () {
                 return this.ticket.entered_at;
             },
 
-            paidAt: function() {
+            paidAt: function () {
                 return this.ticket.paid_at ? this.ticket.paid_at : null;
             },
 

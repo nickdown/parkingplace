@@ -20,6 +20,8 @@
 
 <script>
     export default {
+        props: ['initialTicket'],
+
         data() {
             return {
                 form: {
@@ -32,7 +34,7 @@
         },
 
         created() {
-            this.refreshTicket();
+            this.ticket = this.initialTicket;
 
             this.stripe = StripeCheckout.configure({
                 key: ParkingPlace.stripeKey,
@@ -53,14 +55,13 @@
             });
         },
 
-        methods: {
-            refreshTicket() {
-                axios.get('/api/tickets/current')
-                    .then(response => {
-                        this.ticket = response.data.data;
-                    });
-            },
+        watch: {
+            initialTicket: function(ticket) {
+                this.ticket = ticket;
+            }
+        },
 
+        methods: {
             buy() {
                 this.stripe.open({
                     name: 'Parking Place',

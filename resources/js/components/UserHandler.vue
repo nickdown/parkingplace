@@ -10,9 +10,11 @@
 
         <checkout-form 
             v-if="showCheckoutForm"
+            :initialTicket="this.ticket"
             @userHasPaid="hasPaid"></checkout-form>
 
         <ticket-information
+            :initialTicket="this.ticket"
             v-if="showTicketInformation"></ticket-information>
         
         
@@ -26,19 +28,40 @@
                 user: {
                     isInside: false,
                     hasPaid: false,
-                }
+                },
+                ticket: {},
+                timer: ''
             }
         },
 
         created() {
-            this.updateUser();
+            // get data from server and refresh every 30 seconds
+            this.refreshData();
+            this.timer = setInterval(this.refreshData, 30*1000);
         },
 
+        beforeDestroy() {
+            clearInterval(this.timer)
+        },
+        
+
         methods: {
-            updateUser: function () {
+            refreshData: function () {
+                this.refreshTicket();
+                this.refreshUser();
+            },
+
+            refreshUser: function () {
                 axios.get('/api/users/current')
                     .then(response => {
                         this.user = response.data.data;
+                    });
+            },
+
+            refreshTicket: function () {
+                axios.get('/api/tickets/current')
+                    .then(response => {
+                        this.ticket = response.data.data;
                     });
             },
 

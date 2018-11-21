@@ -50,7 +50,9 @@ class ExitControllerTest extends TestCase
             'paid_at' => null,
         ]);
 
-        $this->actingAs($user)->json('POST', '/api/exits')->assertStatus(403);
+        $this->actingAs($user)->json('POST', '/api/exits')->assertStatus(403)->assertJsonStructure([
+            'error'
+        ]);
     }
 
     /** @test */

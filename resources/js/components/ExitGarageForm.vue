@@ -34,6 +34,11 @@
                     .then(response => {
                         //tell parent userExitedGarage and pass the updated currentTicket
                         this.$emit('userExitedGarage', response.data);
+                    })
+                    .catch(error => {
+                        //TODO: use a custom modal instead of native alert.
+                        //TODO: find out if there is a better way of accessing the error string. Looks a bit gross
+                        alert(error.response.data.error);
                     });
             }
         }

@@ -19,6 +19,3 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/tickets', 'EntryController@store')->name('tickets.store');
-
-Route::post('/exits', 'ExitController@store')->name('exits.store');

@@ -13,6 +13,9 @@ class PurchaseController extends Controller
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
+        $ticket = auth()->user()->currentTicket;
+        $amount = $ticket->rate()->amount();
+
         $customer = Customer::create([
             'email' => $request->stripeEmail,
             'source' => $request->stripeToken
@@ -20,9 +23,13 @@ class PurchaseController extends Controller
 
         Charge::create([
             'customer' => $customer->id,
-            'amount' => 100,
+            'amount' => $amount,
             'currency' => 'cad',
         ]);
+
+        $ticket->paid_at = now();
+        $ticket->paid_amount = $amount;
+        $ticket->save();
 
         return 'Successfully charged card';
     }

@@ -18,14 +18,15 @@ class EntryController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-
+        
         try {
             $entryValidator = EntryValidator::confirm($user);
 
             $user->garage()->enter();
 
-            return redirect('home');
+            return "Successfully entered";
         } catch (Exception $e) {
+            
             return response($e->getMessage(), 403);
         }
     }

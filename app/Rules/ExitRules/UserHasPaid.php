@@ -21,7 +21,6 @@ class UserHasPaid extends Model implements ExitRuleInterface
 
     public function confirm()
     {
-        // exiting the garage is free for now
-        return true;
+        return $this->user->currentTicket->isPaid();
     }
 }

@@ -13,13 +13,15 @@ class EntryControllerTest extends TestCase
     /** @test */
     public function a_new_user_can_store_an_entry_to_the_garage()
     {
+        $this->withoutMiddleware();
+
         $user = factory('App\User')->create();
 
         $this->assertDatabaseMissing('tickets', [
             'user_id' => $user->id
         ]);
 
-        $this->actingAs($user)->json('POST', '/tickets');
+        $this->actingAs($user)->json('POST', '/api/entries');
 
         $this->assertDatabaseHas('tickets', [
             'user_id' => $user->id
@@ -29,16 +31,20 @@ class EntryControllerTest extends TestCase
     /** @test */
     public function a_user_already_in_the_garage_cannot_store_an_entry_to_the_garage()
     {
+        $this->withoutMiddleware();
+
         $user = factory('App\User')->create();
 
         $user->garage()->enter();
 
-        $this->actingAs($user)->json('POST', '/tickets')->assertStatus(403);
+        $this->actingAs($user)->json('POST', '/api/entries')->assertStatus(403);
     }
 
     /** @test */
     public function a_user_cant_enter_when_garage_is_full()
     {
+        $this->withoutMiddleware();
+
         $user = factory('App\User')->create();
 
         config(['garage.spots' => 3]);
@@ -47,6 +53,6 @@ class EntryControllerTest extends TestCase
             'exited_at' => null
         ]);
 
-        $this->actingAs($user)->json('POST', '/tickets')->assertStatus(403);
+        $this->actingAs($user)->json('POST', '/api/entries')->assertStatus(403);
     }
 }

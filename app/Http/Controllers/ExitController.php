@@ -26,6 +26,6 @@ class ExitController extends Controller
 
         $user->garage()->exit();
 
-        return redirect('home');
+        return "Raised gate successfully";
     }
 }

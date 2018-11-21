@@ -3,37 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    @if (! auth()->user()->garage()->inside())
-                        You are not in the Garage.
-
-                        <form action="/tickets" method="POST">
-                            @csrf
-                            <button class="btn btn-lg btn-primary">Enter Garage</button>
-                        </form>
-                    @else
-                        You are in the Garage!
-
-                        <checkout-form></checkout-form>
-
-                        <form action="/exits" method="POST">
-                            @csrf
-                            <button class="btn btn-lg btn-primary">Exit Garage</button>
-                        </form>
-                    @endif
-                </div>
-            </div>
+        <div class="col-md-8 mb-3">
+            <park-place-app></park-place-app>
         </div>
+
+        @include('layouts.sidebar')
     </div>
 </div>
 @endsection

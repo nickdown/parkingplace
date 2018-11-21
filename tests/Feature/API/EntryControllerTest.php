@@ -53,7 +53,9 @@ class EntryControllerTest extends TestCase
             'exited_at' => null
         ]);
 
-        $this->actingAs($user)->json('POST', '/api/entries')->assertStatus(403);
+        $this->actingAs($user)->json('POST', '/api/entries')->assertStatus(403)->assertJsonStructure([
+            'error'
+        ]);
     }
 
     /** @test */

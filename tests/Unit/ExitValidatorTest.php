@@ -16,8 +16,11 @@ class ExitValidatorTest extends TestCase
     public function exit_validator_confirms_user()
     {
         $user = factory('App\User')->create();
-
-        $user->garage()->enter();
+        $ticket = factory('App\Ticket')->create([
+            'user_id' => $user->id,
+            'exited_at' => null,
+            'paid_at' => now(),
+        ]);
 
         $this->assertTrue(ExitValidator::confirm($user));
     }

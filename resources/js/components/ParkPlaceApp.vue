@@ -10,11 +10,11 @@
 
         <checkout-form 
             v-if="showCheckoutForm"
-            :initialTicket="this.ticket"
+            :initialTicket="this.user.currentTicket"
             @userHasPaid="hasPaid"></checkout-form>
 
         <ticket-information
-            :initialTicket="this.ticket"
+            :initialTicket="this.user.currentTicket"
             v-if="showTicketInformation"></ticket-information>
         
         
@@ -25,11 +25,7 @@
     export default {
         data() {
             return {
-                user: {
-                    isInside: false,
-                    hasPaid: false,
-                },
-                ticket: {},
+                user: {},
                 timer: ''
             }
         },
@@ -47,7 +43,6 @@
 
         methods: {
             refreshData: function () {
-                this.refreshTicket();
                 this.refreshUser();
             },
 
@@ -58,24 +53,18 @@
                     });
             },
 
-            refreshTicket: function () {
-                axios.get('/api/tickets/current')
-                    .then(response => {
-                        this.ticket = response.data.data;
-                    });
-            },
-
-            enterGarage: function () {
+            enterGarage: function (currentTicket) {
                 this.user.isInside = true;
+                this.user.currentTicket = currentTicket.data;
             },
 
-            hasPaid: function () {
-                this.user.hasPaid = true;
+            hasPaid: function (currentTicket) {
+                this.user.currentTicket = currentTicket.data;
             },
 
-            exitGarage: function () {
+            exitGarage: function (currentTicket) {
                 this.user.isInside = false;
-                this.user.hasPaid = false;
+                this.user.currentTicket = currentTicket.data;
             }
         },
 
@@ -85,15 +74,19 @@
             },
 
             showCheckoutForm: function() {
-                return this.user.isInside && ! this.user.hasPaid;
+                return this.user.isInside && ! this.ticketIsPaid;
             },
 
             showExitGarageForm: function() {
-                return this.user.isInside && this.user.hasPaid;
+                return this.user.isInside && this.ticketIsPaid;
             },
 
             showTicketInformation: function() {
                 return this.user.isInside;
+            },
+
+            ticketIsPaid: function () {
+                return this.user.currentTicket ? this.user.currentTicket.isPaid : false;
             }
         }
     

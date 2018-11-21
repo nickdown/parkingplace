@@ -6,6 +6,7 @@ use Stripe\Stripe;
 use Stripe\Charge;
 use Stripe\Customer;
 use Illuminate\Http\Request;
+use App\Http\Resources\TicketResource;
 
 class PurchaseController extends Controller
 {
@@ -31,6 +32,6 @@ class PurchaseController extends Controller
         $ticket->paid_amount = $amount;
         $ticket->save();
 
-        return 'Successfully charged card';
+        return new TicketResource($ticket);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\ExitValidator;
 use Illuminate\Http\Request;
+use App\Http\Resources\TicketResource;
 
 class ExitController extends Controller
 {
@@ -24,8 +25,8 @@ class ExitController extends Controller
             return response($e->getMessage(), 403);
         }
 
-        $user->garage()->exit();
+        $ticket = $user->garage()->exit();
 
-        return "Raised gate successfully";
+        return new TicketResource($ticket);
     }
 }

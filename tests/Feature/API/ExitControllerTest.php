@@ -13,11 +13,13 @@ class ExitControllerTest extends TestCase
     /** @test */
     public function a_new_user_can_exit_the_garage_with_the_api()
     {
+        $this->withoutMiddleware();
+
         $user = factory('App\User')->create();        
         $user->garage()->enter();
         $this->assertTrue($user->garage()->inside());
 
-        $this->actingAs($user)->json('POST', '/exits');
+        $this->actingAs($user)->json('POST', '/api/exits');
 
         $this->assertFalse($user->garage()->inside());
     }
@@ -25,9 +27,11 @@ class ExitControllerTest extends TestCase
     /** @test */
     public function a_user_not_in_the_garage_cannot_exit_the_garage_with_the_api()
     {
+        $this->withoutMiddleware();
+
         $user = factory('App\User')->create();
 
-        $this->actingAs($user)->json('POST', '/exits')->assertStatus(403);
+        $this->actingAs($user)->json('POST', '/api/exits')->assertStatus(403);
     }
 
 }

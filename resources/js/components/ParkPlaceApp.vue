@@ -64,7 +64,7 @@
 
             exitGarage: function (currentTicket) {
                 this.user.isInside = false;
-                this.user.currentTicket = currentTicket.data;
+                this.user.currentTicket = null;
             }
         },
 

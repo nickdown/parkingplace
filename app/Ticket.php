@@ -24,6 +24,16 @@ class Ticket extends Model
         'paid_at'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function rate()
+    {
+        return RateCalculator::determine($this);
+    }
+
     public function isPaid()
     {
         return $this->paid_at != null;

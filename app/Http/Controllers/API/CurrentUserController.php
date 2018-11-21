@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 
-class UserDataController extends Controller
+class CurrentUserController extends Controller
 {
     public function show()
     {

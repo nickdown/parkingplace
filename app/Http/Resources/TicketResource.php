@@ -19,7 +19,7 @@ class TicketResource extends JsonResource
             'user' => new UserResource($this->user),
             'entered_at' => Carbon::make($this->entered_at)->toDayDateTimeString(),
             'exited_at' => optional(Carbon::make($this->exited_at))->toDayDateTimeString(),
-            'paid_at' => $this->paid_at,
+            'paid_at' => optional(Carbon::make($this->paid_at))->toDayDateTimeString(),
             'paid_amount' => $this->paid_amount,
             'isPaid' => $this->isPaid(),
             'rate' => new RateResource($this->rate())

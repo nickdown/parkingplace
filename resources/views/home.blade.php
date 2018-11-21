@@ -14,23 +14,7 @@
                         </div>
                     @endif
 
-                    @if (! auth()->user()->garage()->inside())
-                        You are not in the Garage.
-
-                        <form action="/tickets" method="POST">
-                            @csrf
-                            <button class="btn btn-lg btn-primary">Enter Garage</button>
-                        </form>
-                    @else
-                        You are in the Garage!
-
-                        <checkout-form></checkout-form>
-
-                        <form action="/exits" method="POST">
-                            @csrf
-                            <button class="btn btn-lg btn-primary">Exit Garage</button>
-                        </form>
-                    @endif
+                    <user-handler></user-handler>
                 </div>
             </div>
         </div>

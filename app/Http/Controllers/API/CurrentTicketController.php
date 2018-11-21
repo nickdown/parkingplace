@@ -13,7 +13,7 @@ class CurrentTicketController extends Controller
         $ticket = auth()->user()->currentTicket;
 
         if (null == $ticket) {
-            abort(404, 'No current ticket.');
+            return ['data' => null];
         }
 
         return new TicketResource($ticket);

@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Exception;
-use App\ExitValidator;
+use App\Ticket;
+use App\EntryValidator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\TicketResource;
 
-class ExitController extends Controller
+class EntryController extends Controller
 {
     /**
      * Store a newly created resource in storage.
@@ -18,15 +20,15 @@ class ExitController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-
+        
         try {
-            ExitValidator::confirm($user);
+            $entryValidator = EntryValidator::confirm($user);
+
+            $ticket = $user->garage()->enter();
+
+            return new TicketResource($ticket);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 403);
         }
-
-        $ticket = $user->garage()->exit();
-
-        return new TicketResource($ticket);
     }
 }

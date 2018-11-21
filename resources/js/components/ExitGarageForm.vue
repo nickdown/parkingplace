@@ -32,8 +32,8 @@
             exit() {
                 axios.post('/api/exits')
                     .then(response => {
-                        alert(response.data);
-                        this.$emit('userExitedGarage');
+                        //tell parent userExitedGarage and pass the updated currentTicket
+                        this.$emit('userExitedGarage', response.data);
                     });
             }
         }

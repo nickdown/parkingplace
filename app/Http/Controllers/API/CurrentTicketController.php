@@ -10,7 +10,11 @@ class CurrentTicketController extends Controller
 {
     public function show()
     {
-        $ticket = optional(auth()->user())->currentTicket;
+        $ticket = auth()->user()->currentTicket;
+
+        if (null == $ticket) {
+            abort(404, 'No current ticket.');
+        }
 
         return new TicketResource($ticket);
     }

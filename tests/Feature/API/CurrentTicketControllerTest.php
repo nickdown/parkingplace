@@ -22,13 +22,15 @@ class CurrentTicketControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_not_found_status_if_there_is_no_current_ticket()
+    public function it_returns_null_if_there_is_no_current_ticket()
     {
         $this->withoutMiddleware();
 
         $user = factory('App\User')->create();
         $ticket = factory('App\Ticket')->create(['user_id'=>$user->id]);
 
-        $this->actingAs($user)->json('GET', '/api/tickets/current')->assertNotFound();
+        $this->actingAs($user)->json('GET', '/api/tickets/current')->assertJson([
+            'data' => null
+        ]);
     }
 }

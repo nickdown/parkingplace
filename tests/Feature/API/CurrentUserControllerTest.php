@@ -11,7 +11,7 @@ class CurrentUserControllerTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_returns_the_current_user()
+    public function it_returns_the_current_user_as_outside()
     {
         $this->withoutMiddleware();
 
@@ -21,7 +21,6 @@ class CurrentUserControllerTest extends TestCase
             'name' => $user->name,
             'email' => $user->email,
             'isInside' => false,
-            'hasPaid' => null,
         ]);
     }
 
@@ -34,30 +33,22 @@ class CurrentUserControllerTest extends TestCase
         $user->garage()->enter();
 
         $this->actingAs($user)->json('GET', '/api/users/current')->assertOk()->assertJsonFragment([
-            'name' => $user->name,
-            'email' => $user->email,
             'isInside' => true,
-            'hasPaid' => false,
         ]);
     }
 
     /** @test */
-    public function it_returns_the_current_user_as_inside_and_paid()
+    public function it_returns_the_current_user_with_their_current_ticket()
     {
         $this->withoutMiddleware();
 
         $user = factory('App\User')->create();
         $user->garage()->enter();
-        
-        $ticket = $user->currentTicket;
-        $ticket->paid_at = now();
-        $ticket->save();
 
-        $this->actingAs($user)->json('GET', '/api/users/current')->assertOk()->assertJsonFragment([
-            'name' => $user->name,
-            'email' => $user->email,
-            'isInside' => true,
-            'hasPaid' => true,
+        $this->actingAs($user)->json('GET', '/api/users/current')->assertOk()->assertJsonStructure([
+            'data' => [
+                'currentTicket' => [],
+            ]
         ]);
     }
 }

@@ -27,8 +27,7 @@ class EntryController extends Controller
 
             return new TicketResource($ticket);
         } catch (Exception $e) {
-            
-            return response($e->getMessage(), 403);
+            return response()->json(['error' => $e->getMessage()], 403);
         }
     }
 }

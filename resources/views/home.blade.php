@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mb-3">
-            <user-handler></user-handler>
+            <park-place-app></park-place-app>
         </div>
 
         @include('layouts.sidebar')

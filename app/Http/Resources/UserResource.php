@@ -18,7 +18,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'isInside' => $this->garage()->inside(),
-            'hasPaid' => $this->currentTicket->isPaid(),
+            'hasPaid' => optional($this->currentTicket)->isPaid(),
         ];
     }
 }

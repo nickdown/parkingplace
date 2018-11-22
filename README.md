@@ -2,6 +2,10 @@
 
 Welcome to Parking Place! Where you can park with just your phone.
 
+Try out our service at [https://parkingplace.nickdown.com](https://parkingplace.nickdown.com)
+
+If you would like to install yourself, please note that in addition to the normal Laravel installation requirements, you will also have to run `php artisan passport:keys`. This allows Laravel Passport to authenticate API requests from the client. You are also required to provide Stripe API test keys in the `.env` file.
+
 ## Assumptions
 
 - A driver will enter the garage immediately when they request to enter and the gate opens

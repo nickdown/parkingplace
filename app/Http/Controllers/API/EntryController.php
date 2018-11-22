@@ -23,9 +23,7 @@ class EntryController extends Controller
         
         try {
             $entryValidator = EntryValidator::confirm($user);
-
             $ticket = $user->garage()->enter();
-
             return new TicketResource($ticket);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 403);

@@ -22,12 +22,10 @@ class ExitController extends Controller
 
         try {
             ExitValidator::confirm($user);
+            $ticket = $user->garage()->exit();
+            return new TicketResource($ticket);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 403);
         }
-
-        $ticket = $user->garage()->exit();
-
-        return new TicketResource($ticket);
     }
 }

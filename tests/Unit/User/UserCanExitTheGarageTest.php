@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit\User;
 
 use Exception;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UserExitsGarageTest extends TestCase
+class UserCanExitTheGarageTest extends TestCase
 {
     use RefreshDatabase;
 

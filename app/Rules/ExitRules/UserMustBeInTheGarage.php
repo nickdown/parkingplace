@@ -2,10 +2,10 @@
 
 namespace App\Rules\ExitRules;
 
+use App\Rules\RuleInterface;
 use Illuminate\Database\Eloquent\Model;
-use App\Rules\ExitRules\ExitRuleInterface;
 
-class UserMustBeInTheGarage extends Model implements ExitRuleInterface
+class UserMustBeInTheGarage extends Model implements RuleInterface
 {
     protected $user;
 

@@ -17,9 +17,11 @@
             <div>
                 <strong>Do I have to pay for real?</strong>
                 <br>
-                Your company card is no good here.
+                Your company card is no good here. Use this one: 
                 <br>
-                Use: <code>4242 4242 4242 4242</code> (with an expiry date in the future, and any 3 digit pin).
+                <code>4242 4242 4242 4242</code>
+                <br>
+                (with an expiry date in the future, and any 3 digit pin).
             </div>
 
             <hr>
@@ -28,7 +30,10 @@
                 <strong>Do you have a stolen number?</strong>
                 <br>
                 That's weird, but sure: 
-                <code>4000 0000 0000 9979</code> It's going to fail though... So you won't be let out...
+                <br>
+                <code>4000 0000 0000 9979</code>
+                <br>
+                It's going to fail though... So you won't be let out...
             </div>
         </div>  
     </div>

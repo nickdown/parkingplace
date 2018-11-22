@@ -2,10 +2,10 @@
 
 namespace App\Rules\EntryRules;
 
+use App\Rules\RuleInterface;
 use Illuminate\Database\Eloquent\Model;
-use App\Rules\EntryRules\EntryRuleInterface;
 
-class UserNotInGarage extends Model implements EntryRuleInterface
+class UserNotInGarage extends Model implements RuleInterface
 {
     protected $user;
 

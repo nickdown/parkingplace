@@ -31,6 +31,7 @@ If you would like to install yourself, please note that in addition to the norma
 - multiple gates in a garage
 - more rules for entering and exiting
 - store Rates in the database instead of as code
+- expose the garage available spots api to show users how many spots are left before they try to enter
 
 ## Known bugs
 

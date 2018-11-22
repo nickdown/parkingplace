@@ -1,14 +1,15 @@
 <template>
     <div class="card">
-        <div class="card-header">Are you ready to leave?</div>
+        <div class="card-header">You are still in the Garage.</div>
 
-        <div class="card-body">
-            <div v-if="! this.processing">
+        <div class="card-body d-flex justify-content-center">
+            <div v-if="! this.processing" class="d-flex flex-column justify-content-center text-center">
+                <h3>Please pay for parking when you are ready to leave the garage.</h3>
                 <form action="purchases" method="POST">
                     <input type="hidden" name="stripeToken" v-model="form.stripeToken">
                     <input type="hidden" name="stripeEmail" v-model="form.stripeEmail">
 
-                    <button type="submit" class="btn btn-primary" @click.prevent="buy">Pay for Parking</button>
+                    <button type="submit" class="btn btn-primary btn-lg" @click.prevent="buy">Pay for Parking</button>
                 </form>
             </div>
             <div v-if="this.processing" class="d-flex justify-content-center">
@@ -49,7 +50,8 @@
                     axios.post('/api/purchases', this.$data.form)
                         .then(response => {
                             this.processing = false;
-
+                            alert("You have successfully paid.");
+                            
                             // tell parent userHasPaid and pass the updated currentTicket
                             this.$emit('userHasPaid', response.data);
                         });

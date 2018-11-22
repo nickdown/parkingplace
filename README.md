@@ -26,6 +26,7 @@ Welcome to Parking Place! Where you can park with just your phone.
 - multiple garages in one app
 - multiple gates in a garage
 - more rules for entering and exiting
+- store Rates in the database instead of as code
 
 ## Known bugs
 

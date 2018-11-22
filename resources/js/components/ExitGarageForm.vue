@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div class="card-header">You have successfully paid!</div>
+        <div class="card-header">All paid up and ready to leave.</div>
 
         <div class="card-body">
             <h3>Please follow these steps to leave the garage:</h3>
@@ -9,9 +9,12 @@
                 <li>When you are in front of the exit gate, press the "Lift Gate" button below.</li>
                 <li>Drive out, and have a great day!</li>
             </ol>
-            <form>
-                <button type="submit" class="btn btn-primary" @click.prevent="exit">Lift Gate</button>
-            </form>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-lg" @click.prevent="exit">Lift Gate</button>
+            </div>
+        </div>
+        <div class="card-footer">
+            Thank you for choosing Parking Place!
         </div>
     </div>
 </template>
@@ -32,6 +35,7 @@
             exit() {
                 axios.post('/api/exits')
                     .then(response => {
+                        alert("You have exited the garage!");
                         //tell parent userExitedGarage and pass the updated currentTicket
                         this.$emit('userExitedGarage', response.data);
                     })

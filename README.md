@@ -2,6 +2,8 @@
 
 Welcome to Parking Place! Where you can park with just your phone.
 
+[![Build Status](https://travis-ci.org/nickdown/parkingplace.svg?branch=master)](https://travis-ci.org/nickdown/parkingplace)
+
 Try out our service at [https://parkingplace.nickdown.com](https://parkingplace.nickdown.com)
 
 If you would like to install yourself, please note that in addition to the normal Laravel installation requirements, you will also have to run `php artisan passport:keys`. This allows Laravel Passport to authenticate API requests from the client. You are also required to provide Stripe API test keys in the `.env` file.

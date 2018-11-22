@@ -1,26 +1,24 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
+use Exception;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TicketHasTimesTest extends TestCase
+class TicketTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
     public function a_ticket_cannot_have_a_null_entered_at_time()
     {
-        try {
-            $ticket = factory('App\Ticket')->create([
-                'entered_at' => null
-            ]);
-        } catch (\Exception $e) {
-            $this->assertTrue(true);
-        }
+        $this->expectException(Exception::class);
+        $ticket = factory('App\Ticket')->create([
+            'entered_at' => null
+        ]);
     }
 
     /** @test */
@@ -30,7 +28,6 @@ class TicketHasTimesTest extends TestCase
 
         $this->assertInstanceOf(Carbon::class, $ticket->entered_at);
     }
-
 
     /** @test */
     public function a_ticket_can_have_a_null_exited_at_time()
@@ -48,5 +45,27 @@ class TicketHasTimesTest extends TestCase
         $ticket = factory('App\Ticket')->create();
 
         $this->assertInstanceOf(Carbon::class, $ticket->exited_at);
+    }
+
+    /** @test */
+    public function a_ticket_can_be_paid()
+    {
+        $ticket = factory('App\Ticket')->create([
+            'paid_amount' => null,
+            'paid_at' => null
+        ]);
+
+        $this->assertFalse($ticket->isPaid());
+    }
+
+    /** @test */
+    public function a_ticket_can_be_unpaid()
+    {
+        $ticket = factory('App\Ticket')->create([
+            'paid_amount' => 300,
+            'paid_at' => now()
+        ]);
+
+        $this->assertTrue($ticket->isPaid());
     }
 }

@@ -34,7 +34,7 @@ Welcome to Parking Place! Where you can park with just your phone.
 
 ## Known areas for technical improvement
 
-- Rules are passed the user, but some don't require the user (e.g. GarageHasRoom), I would like to learn how to use Laravel's Service Container / resolver, as I am thinking this will allow the Rules to get the data they need by themselves instead of being passed.
+- Every rule is passed the user in it's constructor, but some don't require the user (e.g. GarageHasRoom), I would like to learn how to use Laravel's Service Container / resolver, as I am thinking this will allow the Rules to get the data they need by themselves instead of being passed.
 - use mocks when testing the backend, right now even the Unit tests do a lot of Integration
 - Vue components are not currently tested, I would like to learn how to do this
 - Vue child components are being passed the ticket and user objects, maybe I could use VueX?

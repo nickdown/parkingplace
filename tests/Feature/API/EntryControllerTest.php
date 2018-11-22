@@ -53,6 +53,28 @@ class EntryControllerTest extends TestCase
             'exited_at' => null
         ]);
 
-        $this->actingAs($user)->json('POST', '/api/entries')->assertStatus(403);
+        $this->actingAs($user)->json('POST', '/api/entries')->assertStatus(403)->assertJsonStructure([
+            'error'
+        ]);
+    }
+
+    /** @test */
+    public function a_successful_post_to_the_entry_controller_returns_the_current_ticket()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('App\User')->create();
+
+        //TODO: is there a way to test that the response is a TicketResource without being so specific?
+        $this->actingAs($user)->json('POST', '/api/entries')->assertJsonStructure([
+            'data' => [
+                'entered_at',
+                'exited_at',
+                'paid_at',
+                'paid_amount',
+                'isPaid',
+                'rate',
+            ]
+        ]);
     }
 }

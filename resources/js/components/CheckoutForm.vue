@@ -49,7 +49,9 @@
                     axios.post('/api/purchases', this.$data.form)
                         .then(response => {
                             this.processing = false;
-                            this.$emit('userHasPaid');
+
+                            // tell parent userHasPaid and pass the updated currentTicket
+                            this.$emit('userHasPaid', response.data);
                         });
                 }
             });

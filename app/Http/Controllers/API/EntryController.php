@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Exception;
 use App\Ticket;
 use App\EntryValidator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\TicketResource;
 
 class EntryController extends Controller
 {
@@ -22,12 +24,11 @@ class EntryController extends Controller
         try {
             $entryValidator = EntryValidator::confirm($user);
 
-            $user->garage()->enter();
+            $ticket = $user->garage()->enter();
 
-            return "Successfully entered";
+            return new TicketResource($ticket);
         } catch (Exception $e) {
-            
-            return response($e->getMessage(), 403);
+            return response()->json(['error' => $e->getMessage()], 403);
         }
     }
 }

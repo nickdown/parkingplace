@@ -34,8 +34,13 @@
             enter() {
                 axios.post('/api/entries')
                     .then(response => {
-                        this.$emit('userEnteredGarage');
-                        alert(response.data);
+                        //tell parent userEnteredGarage and pass the updated currentTicket
+                        this.$emit('userEnteredGarage', response.data);
+                    })
+                    .catch(error => {
+                        //TODO: use a custom modal instead of native alert.
+                        //TODO: find out if there is a better way of accessing the error string. Looks a bit gross
+                        alert(error.response.data.error);
                     });
             }
         }

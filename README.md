@@ -27,6 +27,9 @@ Welcome to Parking Place! Where you can park with just your phone.
 - multiple gates in a garage
 - more rules for entering and exiting
 
+## Known bugs
+
+- it's possible to double pay by opening the page in two tabs
 
 ## Known areas for technical improvement
 

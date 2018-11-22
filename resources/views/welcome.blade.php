@@ -16,31 +16,17 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
-            }
-
             .flex-center {
-                align-items: center;
                 display: flex;
                 justify-content: center;
             }
 
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
             .content {
+                padding-top: 40px;
+                padding-bottom: 40px;
                 text-align: center;
                 width: 75%;
             }
@@ -56,7 +42,7 @@
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 13px;
+                font-size: 15px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -64,27 +50,39 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 20px;
+            }
+
+            .m-t-md {
+                margin-top: 40px;
             }
 
             .button {
-                background-color: #636b6f;
                 border: none;
                 color: white;
+                margin: 30px;
                 padding: 15px 30px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-                font-size: 20px;
+                font-size: 25px;
                 border-radius: 4px;
+            }
+
+            .button-primary {
+                background-color: #636b6f;
+            }
+
+            .button-secondary {
+                background-color: #1E407C;
             }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content mx-4">
+        <div class="flex-center">
+            <div class="content">
                 @if (Route::has('login'))
-                    <div class="top-right links">
+                    <div class="links">
                         @auth
                             <a href="{{ url('/home') }}">Home</a>
                         @else
@@ -96,7 +94,7 @@
                         @endauth
                     </div>
                 @endif
-                <div class="title m-b-md">
+                <div class="title m-b-md m-t-md">
                     Parking Place
                 </div>
 
@@ -104,8 +102,16 @@
                     <p>Welcome to the easiest way to park!</p>
                     <p>You can enter, pay, and leave the garage with just your phone.</p>
                 </div>
-
-                <a href="/register" class="button">Create Your Free Account</a>
+                 @if (Route::has('login'))
+                        @auth
+                            <a href="{{ route('register') }}" class="button button-secondary">Go To Ticket Dashboard</a>
+                        @else
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="button button-primary">Create Your Free Account</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
             </div>
         </div>
     </body>

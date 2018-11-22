@@ -42,10 +42,15 @@
 
             .content {
                 text-align: center;
+                width: 75%;
             }
 
             .title {
                 font-size: 84px;
+            }
+
+            .subtitle {
+                font-size: 42px;
             }
 
             .links > a {
@@ -61,37 +66,46 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .button {
+                background-color: #636b6f;
+                border: none;
+                color: white;
+                padding: 15px 30px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 20px;
+                border-radius: 4px;
+            }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+            <div class="content mx-4">
+                @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
                 <div class="title m-b-md">
-                    Laravel
+                    Parking Place
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="subtitle m-b-md">
+                    <p>Welcome to the easiest way to park!</p>
+                    <p>You can enter, pay, and leave the garage with just your phone.</p>
                 </div>
+
+                <a href="/register" class="button">Create Your Free Account</a>
             </div>
         </div>
     </body>

@@ -30,6 +30,7 @@ Welcome to Parking Place! Where you can park with just your phone.
 ## Known bugs
 
 - it's possible to double pay by opening the page in two tabs
+- if the user pays but doesn't leave, the rate description will change as higher rates become applicable. The "paid amount" shown in the ticket information will remain the amount paid by the customer.
 
 ## Known areas for technical improvement
 

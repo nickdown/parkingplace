@@ -63,6 +63,7 @@
             },
 
             exitGarage: function (currentTicket) {
+                // after leaving the garage the currentTicket is complete and not needed, but might be useful in the future if we want to display "previous ticket" so the user can review their purchase
                 this.user.isInside = false;
                 this.user.currentTicket = null;
             }

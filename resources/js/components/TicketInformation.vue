@@ -17,9 +17,13 @@
                         <td><strong>Paid At:</strong></td>
                         <td>{{ this.paidAt }}</td>
                     </tr>
-                    <tr>
+                    <tr v-show="! this.ticket.isPaid">
                         <td><strong>Amount Currently Oweing:</strong></td>
                         <td>{{ this.amountOweing }}</td>
+                    </tr>
+                    <tr v-show="this.ticket.isPaid">
+                        <td><strong>Amount Paid:</strong></td>
+                        <td>{{ this.amountPaid }}</td>
                     </tr>
                     <tr>
                         <td><strong>Ticket Description:</strong></td>
@@ -71,6 +75,10 @@
 
             amountOweing: function () {
                 return this.ticket.rate ? this.toDollarString(this.ticket.rate.amount) : null;
+            },
+
+            amountPaid: function () {
+                return this.ticket.paid_amount ? this.toDollarString(this.ticket.paid_amount) : null;
             },
 
             description: function () {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Rules\EntryRules;
+namespace App\Rules;
 
-interface EntryRuleInterface {
+interface RuleInterface {
     function __construct($user);
     
     public function failureDescription();

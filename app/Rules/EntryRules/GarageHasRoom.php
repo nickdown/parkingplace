@@ -3,10 +3,10 @@
 namespace App\Rules\EntryRules;
 
 use App\Garage;
+use App\Rules\RuleInterface;
 use Illuminate\Database\Eloquent\Model;
-use App\Rules\EntryRules\EntryRuleInterface;
 
-class GarageHasRoom extends Model implements EntryRuleInterface
+class GarageHasRoom extends Model implements RuleInterface
 {
     protected $user;
 

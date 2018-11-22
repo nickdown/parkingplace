@@ -7,7 +7,7 @@ Welcome to Parking Place! Where you can park with just your phone.
 - A driver will enter the garage immediately when they request to enter and the gate opens
 - There is only one garage (one garage per deployed app)
 - There is only one gate
-- The cake is a lie
+- AllDayRate will be paid for any ticket duration more than 6 hours, for the one price, the user could stay for an arbitrarily large amount of time and still pay the same as 7 hours
 - "In-and-outs" are not supported, the user pays for multiple tickets
 - Stay 0 minutes? Still have to pay the OneHourRate
 - The driver pays right before they're going to leave

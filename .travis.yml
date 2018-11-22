@@ -8,17 +8,10 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction
   - php artisan key:generate
-  - php artisan migrate
   - php artisan passport:keys
-
-before_install:
-  - mysql -e 'CREATE DATABASE homestead;'
 
 script:
   - phpunit
-
-services:
-  - mysql
 
 notifications:
   email: false

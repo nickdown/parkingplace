@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Events\GateRaiseRequested;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -78,5 +80,35 @@ class ExitControllerTest extends TestCase
                 'rate',
             ]
         ]);
+    }
+
+    /** @test */
+    public function a_successful_exit_request_dispatches_a_gate_raise_requested_event()
+    {
+        $this->withoutMiddleware();
+        Event::fake();
+        $user = factory('App\User')->create();
+        $ticket = factory('App\Ticket')->create([
+            'user_id' => $user->id,
+            'exited_at' => null,
+            'paid_at' => now(),
+        ]);
+
+        $this->actingAs($user)->json('POST', '/api/exits');
+
+        Event::assertDispatched(GateRaiseRequested::class);
+    }
+
+    /** @test */
+    public function an_unsuccessful_exit_request_does_not_dispatch_a_gate_raise_requested_event()
+    {
+        $this->withoutMiddleware();
+        Event::fake();
+        $user = factory('App\User')->create();
+        $user->garage()->enter();
+
+        $this->actingAs($user)->json('POST', '/api/exits');
+
+        Event::assertNotDispatched(GateRaiseRequested::class);
     }
 }

@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Events\GateRaiseRequested;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -76,5 +78,30 @@ class EntryControllerTest extends TestCase
                 'rate',
             ]
         ]);
+    }
+
+    /** @test */
+    public function a_successful_entry_request_dispatches_a_gate_raise_requested_event()
+    {
+        $this->withoutMiddleware();
+        Event::fake();
+        $user = factory('App\User')->create();
+
+        $this->actingAs($user)->json('POST', '/api/entries');
+
+        Event::assertDispatched(GateRaiseRequested::class);
+    }
+
+    /** @test */
+    public function an_unsuccessful_entry_request_does_not_dispatch_a_gate_raise_requested_event()
+    {
+        $this->withoutMiddleware();
+        Event::fake();
+        $user = factory('App\User')->create();
+        config(['garage.spots' => 0]);
+
+        $this->actingAs($user)->json('POST', '/api/entries');
+
+        Event::assertNotDispatched(GateRaiseRequested::class);
     }
 }
